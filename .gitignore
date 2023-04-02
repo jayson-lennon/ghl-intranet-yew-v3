@@ -1,0 +1,4 @@
+# gitignore file for ghl-intranet-yew-v3
+
+/dist
+/target

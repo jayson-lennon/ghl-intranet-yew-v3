@@ -1,0 +1,163 @@
+/* Global CSS variables */
+
+body {
+  /* base colours */
+  --hue-primary: 224;
+  --sat-primary: 0%;
+  --luma-main-bg: 100%;
+  --hue-headingText: 0;
+  --sat-headingText: 100%;
+  --luma-headingText: 27.3%;
+  --luma-flowText: 0%;
+
+  --colour-main-bg:hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-main-bg)
+  );
+
+  --colour-headingText:hsl(
+    var(--hue-headingText),
+    var(--sat-headingText),
+    var(--luma-headingText)
+  );
+
+  --colour-flowText:hsl(
+    var(--hue-primary),
+    var(--sat-primary),
+    var(--luma-flowText)
+  );
+
+  /* base measurements */
+
+  --site-component-padding: 1.5em;
+  --site-element-padding: 1.25em;
+
+}
+
+/* Begin CSS reset */
+
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+form,
+fieldset,
+caption,
+table,
+tr,
+td,
+th,
+address,
+blockquote,
+img {
+  margin: 0;
+  padding: 0;
+}
+img,
+fieldset,
+object {
+  border: none;
+}
+*,
+*:after,
+*:before {
+  flex: 1 0 auto; /* safari bugfix */
+  box-sizing: border-box;
+}
+button,
+label {
+  cursor: pointer;
+}
+html,
+body {
+  height: 100%;
+}
+
+/* End CSS reset */
+
+/* make hr not display by default */
+
+hr {
+  display: none;
+}
+
+/* standarize focus method and set main flow font */
+
+body,
+button,
+input,
+table,
+textarea,
+select {
+  font: normal 1em/1.5 "poppins", arial, helvetica, sans-serif;
+}
+
+/* Begin main styles */
+
+#fauxBody {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background:var(--colour-main-bg);
+  color:var(--colour-flowText);
+  text-align: center;
+}
+
+#fauxBody header,
+#fauxBody nav,
+#fauxBody main,
+#fauxBody footer {
+  padding: var(--site-component-padding);
+}
+
+header > img {
+  width: 50%;
+  height: auto;
+}
+
+#fauxBody a {
+  color: var(--colour-headingText);
+  font-weight: bold;
+}
+
+#fauxBody h1, h2, h3 {
+  color: var(--colour-headingText);
+}
+
+#fauxBody table {
+  margin: 0 auto;
+}
+
+#fauxBody table td {
+  padding: var(--site-element-padding);
+}
+
+#fauxBody nav ul li {
+  display: inline;
+  padding: var(--site-element-padding);
+}
+
+#fauxBody nav ul li a {
+  color: var(--colour-headingText);
+  font-weight: bold;
+}
+
+#fauxBody footer a {
+  display: inline;
+  color: var(--colour-headingText);
+  font-weight: bold;
+  padding: var(--site-element-padding);
+}

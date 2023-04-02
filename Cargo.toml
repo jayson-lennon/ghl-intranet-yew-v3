@@ -1,0 +1,24 @@
+[package]
+name = "ghl-intranet-yew-v3"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jeffery D. Mitchell"]
+description = "GHL Intranet V3"
+readme = "README.md"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4.24"
+gloo-net = "0.2.6"
+log = "0.4.6"
+yew = { version = "0.20", features = ["csr"] }
+yew-router = "0.17.0"
+serde = "1.0.152"
+serde_json =  "1.0.94"
+wasm-bindgen = "0.2.84"
+wasm-bindgen-futures = "0.4"
+wasm-logger = "0.2.0"
+web-sys = "0.3.61"
+
