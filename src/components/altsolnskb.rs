@@ -10,30 +10,21 @@ use crate::components::searchinput::SearchField;
 
 #[derive(Clone, PartialEq, Properties, Debug, Default, Serialize, Deserialize)]
 pub struct SearchKeyword {
-    pub keyword: String
+    pub keyword: String,
 }
 
 #[function_component(KeywordSearch)]
 fn keyword_search() -> Html {
     let search_keyword = use_state(|| SearchKeyword::default());
-    let keyword = use_node_ref();
 
     log::info!("search_keyword {:?}", search_keyword.clone());
 
     let onsubmit = {
         let search_keyword = search_keyword.clone();
 
-        let keyword = keyword.clone();
-
         Callback::from(move |event: SubmitEvent| {
             event.prevent_default();
             log::info!("search_keyword {:?}", &search_keyword.clone());
-
-            let keyword = keyword.cast::<HtmlInputElement>().unwrap().value();
-
-            let search_keyword = SearchKeyword {
-                keyword
-            };
 
             log::info!("search_keyword {:?}", &search_keyword);
 
@@ -48,14 +39,35 @@ fn keyword_search() -> Html {
         })
     };
 
+    let searchfield_oninput = {
+        let search_keyword = search_keyword.clone();
+        move |ev: InputEvent| {
+            let input: HtmlInputElement = ev.target_unchecked_into();
+            let value = input.value();
+            search_keyword.set(SearchKeyword { keyword: value });
+        }
+    };
+
+    let reset_onclick = {
+        let search_keyword = search_keyword.clone();
+        move |_| {
+            search_keyword.set(SearchKeyword::default());
+        }
+    };
+
     html! {
         <>
             <form {onsubmit}>
-                <SearchField input_node_ref={keyword} label={"Keyword: ".to_owned()} name={"keyword".clone()} field_type={"text".clone()} />
+                <SearchField
+                    oninput={searchfield_oninput}
+                    label={"Keyword: ".to_owned()}
+                    name={"keyword".clone()}
+                    field_type={"text".clone()}
+                    value={search_keyword.keyword.clone()} />
                 <button type="submit">{ "Search" }</button>
             </form>
             <br />
-            <button>{ "Reset" }</button>            
+            <button onclick={reset_onclick}> { "Reset" }</button>
         </>
     }
 }
@@ -76,3 +88,4 @@ pub fn alt_solns_kb() -> Html {
         </>
     }
 }
+

@@ -7,7 +7,8 @@ pub struct SearchFieldProps {
     pub label: String,
     pub field_type: String,
     pub name: String,
-    pub input_node_ref: NodeRef,
+    pub oninput: Callback<InputEvent>,
+    pub value: String,
 }
 
 #[function_component(SearchField)]
@@ -16,7 +17,8 @@ pub fn search_field(props: &SearchFieldProps) -> Html {
         label,
         field_type,
         name,
-        input_node_ref,
+        oninput,
+        value,
     } = props;
 
     html! {
@@ -25,8 +27,10 @@ pub fn search_field(props: &SearchFieldProps) -> Html {
             <input
                 type={field_type.clone()}
                 name={name.clone()}
-                ref={input_node_ref.clone()}
+                oninput={oninput}
+                value={value.clone()}
             />
         </label>
     }
 }
+
